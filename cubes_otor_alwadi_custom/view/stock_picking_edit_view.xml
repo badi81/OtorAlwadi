@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_picking_form_x3" model="ir.ui.view">
+        <field name="name">stock.picking.form.x1</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="project_id" attrs="{'invisible': [('project_id', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//group[@name='other_infos']" position="after">
+                <group string="Accounting">
+                    <field name="analytic_account_id" attrs="{'invisible': [('analytic_account_id', '=', False)]}"/>
+                    <field name="account_id" attrs="{'invisible': [('account_id', '=', False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

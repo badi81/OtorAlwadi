@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_move_line_form_x1" model="ir.ui.view">
+        <field name="name">account.move.line.form.x1</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='move_id']" position="after">
+                <field name="company_id"
+                       options="{'no_open': True,'no_create':True, 'no_create_edit':True, 'no_quick_create':True}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>
