@@ -24,3 +24,12 @@ class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
     company_id = fields.Many2one(related='move_id.company_id', store=True, readonly=False)
+
+
+
+class AccountJournal(models.Model):
+    _inherit = 'account.journal'
+
+    company_id = fields.Many2one('res.company', string='Company', required=True, readonly=False, index=True,
+                                 default=lambda self: self.env.company,
+                                 help="Company related to this journal")
