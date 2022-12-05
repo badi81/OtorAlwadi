@@ -3,16 +3,6 @@ from odoo.exceptions import UserError
 
 
 
-class SaleReportEdited(models.Model):
-    _inherit = "sale.report"
-
-    cubes_date = fields.Date(string="Sales Force Date", readonly=True)
-
-    def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
-        fields['cubes_date'] = ", s.cubes_date as cubes_date"
-        groupby += ', s.cubes_date'
-
-        return super(SaleReportEdited, self)._query(with_clause, fields, groupby, from_clause)
 
 
 class SaleOrderLine(models.Model):
@@ -56,3 +46,15 @@ class SaleOrderLine(models.Model):
             'company_id': self.company_id.id,
         }
         return invoice_vals
+
+
+class SaleReportEdited(models.Model):
+    _inherit = "sale.report"
+
+    cubes_date = fields.Date(string="Sales Force Date", readonly=True)
+
+    def _query(self, with_clause='', fields={}, groupby='', from_clause=''):
+        fields['cubes_date'] = ", s.cubes_date as cubes_date"
+        groupby += ', s.cubes_date'
+
+        return super(SaleReportEdited, self)._query(with_clause, fields, groupby, from_clause)
